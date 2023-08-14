@@ -1,4 +1,4 @@
-package com.example.study.blog
+package com.example.study.blog.dto
 
 class BlogDto (
     val query: String,
