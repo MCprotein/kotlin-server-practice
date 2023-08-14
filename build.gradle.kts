@@ -29,6 +29,18 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+// allOpen은 anootaion이 붙어있는 class를 open으로 바꿔주는 역할
+allOpen {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.MappedSuperclass")
+	annotation("jakarta.persistence.Embeddable")
+}
+
+// 매개변수가 없는 생성자를 자동으로 추가해주는 역할
+noArg {
+	annotation("jakarta.persistence.Entity")
+}
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs += "-Xjsr305=strict"
