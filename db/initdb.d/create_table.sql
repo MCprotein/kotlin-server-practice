@@ -1,6 +1,5 @@
-CREATE TABLE departments (
-    `id`        INT          NOT NULL AUTO_INCREMENT,
-    `name`      VARCHAR(25)  NOT NULL UNIQUE,
-    `priority`  TINYINT      NOT NULL,
-    PRIMARY KEY (id)
+CREATE TABLE WORDCOUNT (
+	WORD VARCHAR(100) NOT NULL,
+	CNT INT(11) DEFAULT NULL,
+	PRIMARY KEY (WORD)
 );
