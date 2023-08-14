@@ -38,3 +38,6 @@ out/
 
 ### db ###
 /db/data/
+
+### secret .env ###
+**/secret.yml

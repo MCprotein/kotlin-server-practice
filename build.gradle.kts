@@ -27,6 +27,8 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework:spring-webflux")
+
 }
 
 // allOpen은 anootaion이 붙어있는 class를 open으로 바꿔주는 역할
