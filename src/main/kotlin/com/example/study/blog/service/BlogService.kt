@@ -2,6 +2,8 @@ package com.example.study.blog.service
 
 import com.example.study.blog.SecretProperties
 import com.example.study.blog.dto.BlogDto
+import com.example.study.blog.entity.WordCount
+import com.example.study.blog.repository.WordRepository
 import com.example.study.core.exception.InvalidInputException
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
@@ -12,7 +14,10 @@ import org.springframework.web.reactive.function.client.bodyToMono
 
 
 @Service
-class BlogService(val secretProperties: SecretProperties) {
+class BlogService(
+    val secretProperties: SecretProperties,
+    val wordRepository: WordRepository
+) {
 
     fun searchKakao(blogDto: BlogDto): String? {
 
@@ -35,6 +40,14 @@ class BlogService(val secretProperties: SecretProperties) {
             .bodyToMono<String>()
         val result = response.block()
 
+        val lowQuery: String = blogDto.query.lowercase()
+        val word: WordCount = wordRepository.findById(lowQuery).orElse(WordCount(lowQuery))
+        word.cnt++
+
+        wordRepository.save(word)
+
         return result
     }
+
+    fun searchWordRank(): List<WordCount> = wordRepository.findTop10ByOrderByCntDesc()
 }
